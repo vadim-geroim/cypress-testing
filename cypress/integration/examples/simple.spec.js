@@ -16,5 +16,11 @@ describe('Load URL, Assertions', () => {
 
 //Cypress has automatic implicit wait by default
 describe('Implicit Waits, Pause and Debug', () => {
+    it('should wait for 5 seconds', () => {
+        cy.wait(5000);
+    });
 
+    it('should pause the test', () => {
+        //cy.pause(); //Pauses the test execution
+    });
 });
