@@ -26,7 +26,7 @@ describe.skip('Implicit Waits, Pause and Debug', () => {
 });
 
 //https://books.toscrape.com/
-describe('Interacting with Buttons', () => {
+describe.skip('Interacting with Buttons', () => {
     it('should open the URL', () => {
         cy.visit('https://books.toscrape.com/', { timeout: 3000 });
         cy.url().should('include', 'https://books.toscrape.com/');
@@ -35,5 +35,13 @@ describe('Interacting with Buttons', () => {
     it('should click on Music category', () => {
         cy.get('a').contains('Music').click();
         cy.get('h1').contains('Music');
+    });
+});
+
+describe('Validating count of elements on the page', () => {
+    it('should display the right number of books on Music category', () => {
+        cy.visit('https://books.toscrape.com/', { timeout: 3000 });
+        cy.get('a').contains('Music').click();
+        cy.get('.product_pod').its('length').should('equal', 13);
     });
 });
