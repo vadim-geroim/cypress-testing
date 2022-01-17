@@ -104,10 +104,19 @@ describe.skip('Apply multiple assertions', () => {
     });
 });
 
-describe('Clear cookies/local storage', () => {
+describe.skip('Clear cookies/local storage', () => {
     it('should clear cookies and local storage', () => {
         cy.visit('http://zero.webappsecurity.com/login.html');
         cy.clearCookies({ log: true });//Cleares cookies
         cy.clearLocalStorage('desired item', { log: true });//Cleares local storage
     });
-})
+});
+
+describe.skip('Time and date modification', () => {
+    it('should change the date', () => {
+        const date = new Date(2000, 1, 20).getTime();
+        cy.clock(date);
+        cy.log(date);
+    })
+});
+
