@@ -46,7 +46,7 @@ describe.skip('Validating count of elements on the page', () => {
     });
 });
 
-describe('Logs example', () => {
+describe.skip('Logs example', () => {
     it('should validate Olio book price', () => {
         cy.visit('https://books.toscrape.com/');
         cy.get('a').contains('Poetry').click();
@@ -54,4 +54,13 @@ describe('Logs example', () => {
         cy.get('a').contains('Olio').click();
         cy.get('.product_main .price_color').contains('£23.88');
     });
+});
+
+describe('Browser refresh/reload', () => {
+    it('should check the price remain the same after the browser refresh', () => {
+        cy.visit('https://books.toscrape.com/');
+        cy.get('a').contains('Travel').click();
+        cy.reload();// the web browser reload
+        cy.get('.alert-warning').contains('Warning!');
+    })
 });
