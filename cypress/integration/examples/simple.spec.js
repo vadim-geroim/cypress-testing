@@ -87,11 +87,19 @@ describe.skip('Interacting with a checkbox', () => {
     })
 });
 
-describe('Variables and Aliases', () => {
+describe.skip('Variables and Aliases', () => {
     it('should use the simple aliase', () => {
         cy.visit('http://zero.webappsecurity.com/login.html');
         cy.get('input[value="Sign in"]').as('login-btn');//It creates alias which behaves like a selector name
         cy.get('@login-btn').click();
         cy.contains('Forgot your password ?').should('be.visible');
+    });
+});
+
+describe('Apply multiple assertions', () => {
+    it('should check with multiple assertions', () => {
+        cy.visit('http://zero.webappsecurity.com/login.html');
+        cy.get('input[value="Sign in"]').click();
+        cy.get('.alert-error').should('be.visible').and('contain', 'Login and/or password are wrong.');//Applies multiple assertions with(and) operator
     });
 });
