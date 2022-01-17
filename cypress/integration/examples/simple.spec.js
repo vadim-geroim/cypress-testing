@@ -96,10 +96,18 @@ describe.skip('Variables and Aliases', () => {
     });
 });
 
-describe('Apply multiple assertions', () => {
+describe.skip('Apply multiple assertions', () => {
     it('should check with multiple assertions', () => {
         cy.visit('http://zero.webappsecurity.com/login.html');
         cy.get('input[value="Sign in"]').click();
         cy.get('.alert-error').should('be.visible').and('contain', 'Login and/or password are wrong.');//Applies multiple assertions with(and) operator
     });
 });
+
+describe('Clear cookies/local storage', () => {
+    it('should clear cookies and local storage', () => {
+        cy.visit('http://zero.webappsecurity.com/login.html');
+        cy.clearCookies({ log: true });//Cleares cookies
+        cy.clearLocalStorage('desired item', { log: true });//Cleares local storage
+    });
+})
