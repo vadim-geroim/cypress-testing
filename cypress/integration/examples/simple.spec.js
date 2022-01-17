@@ -56,11 +56,25 @@ describe.skip('Logs example', () => {
     });
 });
 
-describe('Browser refresh/reload', () => {
+describe.skip('Browser refresh/reload', () => {
     it('should check the price remain the same after the browser refresh', () => {
         cy.visit('https://books.toscrape.com/');
         cy.get('a').contains('Travel').click();
         cy.reload();// the web browser reload
         cy.get('.alert-warning').contains('Warning!');
     })
+});
+
+describe('Clear/Type text into inputs', () => {
+    it('should validate failed on login', () => {
+        cy.visit('http://zero.webappsecurity.com/login.html');
+        cy.get('#user_login').clear().type('False login', { delay: 100 });//Use delay function for typing if needed 
+        cy.get('#user_password').clear().type('False password');//Always clear input before typing
+        cy.get('input[value="Sign in"').click();
+        const alert = cy.get('.alert-error');
+        alert.contains('Login and/or password are wrong.');
+        alert.should('be.visible');
+        //cy.get('.alert-error').contains('Login and/or password are wrong.');
+        //cy.get('.alert-error').should('be.visible');
+    });
 });
