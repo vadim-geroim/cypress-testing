@@ -38,10 +38,20 @@ describe.skip('Interacting with Buttons', () => {
     });
 });
 
-describe('Validating count of elements on the page', () => {
+describe.skip('Validating count of elements on the page', () => {
     it('should display the right number of books on Music category', () => {
         cy.visit('https://books.toscrape.com/', { timeout: 3000 });
         cy.get('a').contains('Music').click();
         cy.get('.product_pod').its('length').should('equal', 13);
+    });
+});
+
+describe('Logs example', () => {
+    it('should validate Olio book price', () => {
+        cy.visit('https://books.toscrape.com/');
+        cy.get('a').contains('Poetry').click();
+        cy.log('clicked on Poetry category');// Logs for debugging
+        cy.get('a').contains('Olio').click();
+        cy.get('.product_main .price_color').contains('£23.88');
     });
 });
