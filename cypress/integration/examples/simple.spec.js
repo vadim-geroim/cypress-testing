@@ -65,7 +65,7 @@ describe.skip('Browser refresh/reload', () => {
     })
 });
 
-describe('Clear/Type text into inputs', () => {
+describe.skip('Clear/Type text into inputs', () => {
     it('should validate failed on login', () => {
         cy.visit('http://zero.webappsecurity.com/login.html');
         cy.get('#user_login').clear().type('False login', { delay: 100 });//Use delay function for typing if needed 
@@ -77,4 +77,12 @@ describe('Clear/Type text into inputs', () => {
         //cy.get('.alert-error').contains('Login and/or password are wrong.');
         //cy.get('.alert-error').should('be.visible');
     });
+});
+
+describe('Interacting with a checkbox', () => {
+    it('should click on checkbox', () => {
+        cy.visit('http://zero.webappsecurity.com/login.html');
+        cy.get('#user_remember_me').click();
+        cy.get('#user_remember_me').should('be.checked');//Validation if checkbox has been checked
+    })
 });
