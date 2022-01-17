@@ -79,10 +79,19 @@ describe.skip('Clear/Type text into inputs', () => {
     });
 });
 
-describe('Interacting with a checkbox', () => {
+describe.skip('Interacting with a checkbox', () => {
     it('should click on checkbox', () => {
         cy.visit('http://zero.webappsecurity.com/login.html');
         cy.get('#user_remember_me').click();
         cy.get('#user_remember_me').should('be.checked');//Validation if checkbox has been checked
     })
+});
+
+describe('Variables and Aliases', () => {
+    it('should use the simple aliase', () => {
+        cy.visit('http://zero.webappsecurity.com/login.html');
+        cy.get('input[value="Sign in"]').as('login-btn');//It creates alias which behaves like a selector name
+        cy.get('@login-btn').click();
+        cy.contains('Forgot your password ?').should('be.visible');
+    });
 });
