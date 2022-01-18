@@ -173,10 +173,21 @@ describe.skip('working with Select box', () => {
     });
 });
 
-describe('Taking screenshot', () => {
+describe.skip('Taking screenshot', () => {
     it('should take a screenshot', () => {
         cy.visit("https://devexpress.github.io/testcafe/example/");
         cy.screenshot({ capture: 'fullPage' })
         cy.get('h1').screenshot();
+    });
+});
+
+describe('Scrolling on the Page', () => {
+    it('should scroll the page up and down', () => {
+        cy.visit('https://devexpress.github.io/testcafe/example/');
+        cy.wait(2000);
+        cy.get('#submit-button').scrollIntoView();
+        cy.wait(1000);
+        cy.get('header').scrollIntoView();
+        cy.wait(1000);
     });
 });
