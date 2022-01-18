@@ -181,7 +181,7 @@ describe.skip('Taking screenshot', () => {
     });
 });
 
-describe('Scrolling on the Page', () => {
+describe.skip('Scrolling on the Page', () => {
     it('should scroll the page up and down', () => {
         cy.visit('https://devexpress.github.io/testcafe/example/');
         cy.wait(2000);
@@ -189,5 +189,15 @@ describe('Scrolling on the Page', () => {
         cy.wait(1000);
         cy.get('header').scrollIntoView();
         cy.wait(1000);
+    });
+});
+
+describe.skip('Write data into JSON or TXT file', () => {
+    it('should write data into JSON file', () => {
+        cy.writeFile('json-log.json', { name: 'Peter', age: 29, salary: '100K' });
+    });
+
+    it('should write data into txt file', () => {
+        cy.writeFile('txt-log.txt', 'This is an example of the plain text.');
     });
 });
