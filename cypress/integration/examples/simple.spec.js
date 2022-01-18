@@ -120,7 +120,7 @@ describe.skip('Time and date modification', () => {
     })
 });
 
-describe('Viewport/Devices emulation', () => {
+describe.skip('Viewport/Devices emulation', () => {
     it('should open the webpage on iphone', () => {
         cy.visit('https://example.com');
         cy.viewport('iphone-x');
@@ -131,5 +131,12 @@ describe('Viewport/Devices emulation', () => {
         cy.visit('https://example.com');
         cy.viewport(550, 750);
         cy.wait(3000);
+    });
+});
+
+describe('Get and assert page title', () => {
+    it('should assert page title', () => {
+        cy.visit('https://example.com');
+        cy.title().should('include', 'Example Domain');
     });
 });
