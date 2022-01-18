@@ -212,10 +212,41 @@ describe.skip('Read data from JSON or TXT files', () => {
     });
 });
 
-describe('Assert content type', () => {
+describe.skip('Assert content type', () => {
     it('should verify document content type and property', () => {
         cy.visit('https://example.com/');
         cy.document().its('contentType').should('eq', 'text/html');
         cy.document().should('have.property', 'charset').and('eq', 'UTF-8');
+    });
+});
+
+class BasePage {
+    static loadHomePage() {
+        cy.visit('https://devexpress.github.io/testcafe/example/');
+    }
+
+    static wait(number) {
+        cy.wait(number);
+    }
+}
+
+class HomePage extends BasePage {
+    static scrollUp() {
+        cy.get('header').scrollIntoView();
+    }
+
+    static scrollDown() {
+        cy.get('#submit-button').scrollIntoView();
+    }
+}
+
+describe.skip('Abstraction with Classes', () => {
+    it('should use abstract classes', () => {
+        HomePage.loadHomePage();
+        HomePage.wait(1000);
+        HomePage.scrollDown();
+        HomePage.wait(1000);
+        HomePage.scrollUp();
+        HomePage.wait(1000);
     });
 });
