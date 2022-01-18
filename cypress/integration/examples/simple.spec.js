@@ -164,11 +164,19 @@ describe.skip('Keyboard Press Simulation', () => {
 });
 
 
-describe('working with Select box', () => {
+describe.skip('working with Select box', () => {
     it('should select the value from the dropdown', () => {
         cy.visit('https://devexpress.github.io/testcafe/example/');
         cy.wait(2000);
         cy.get('#preferred-interface').select('JavaScript API');
         cy.get('#preferred-interface').should('have.value', 'JavaScript API');
+    });
+});
+
+describe('Taking screenshot', () => {
+    it('should take a screenshot', () => {
+        cy.visit("https://devexpress.github.io/testcafe/example/");
+        cy.screenshot({ capture: 'fullPage' })
+        cy.get('h1').screenshot();
     });
 });
