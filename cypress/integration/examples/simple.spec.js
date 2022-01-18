@@ -290,3 +290,12 @@ describe.skip('JQuery with Cypress', () => {
         cy.wrap($loginBtn).click();
     });
 });
+
+describe('Create and use custom Cypress command', () => {
+    it('should use the custom Cypress command', () => {
+        cy.visit('http://zero.webappsecurity.com/login.html');
+        cy.login('fake login', 'fake password');
+        cy.wait(1000);
+        cy.get('.alert-error').should('be.visible');
+    });
+})
