@@ -211,3 +211,11 @@ describe.skip('Read data from JSON or TXT files', () => {
         cy.readFile('txt-log.txt').should('eq', 'This is an example of the plain text.')
     });
 });
+
+describe('Assert content type', () => {
+    it('should verify document content type and property', () => {
+        cy.visit('https://example.com/');
+        cy.document().its('contentType').should('eq', 'text/html');
+        cy.document().should('have.property', 'charset').and('eq', 'UTF-8');
+    });
+});
