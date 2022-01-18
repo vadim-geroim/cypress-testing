@@ -250,3 +250,36 @@ describe.skip('Abstraction with Classes', () => {
         HomePage.wait(1000);
     });
 });
+
+describe.skip('Before, After, BeforeEach, AfterEach hooks', () => {
+    before(function () {
+        //This hook runs once before all test scenarios
+        //Setup test data
+        //Seed or reset the database
+        cy.log('This is Before Hook runs once');
+    });
+
+    after(function () {
+        //This hook runs once after all test scenarios
+        //Test clean up
+        //Clean cookies or local storage
+        cy.log('This is After Hook runs once');
+    });
+
+    beforeEach(function () {
+        //This hook runs before each test scenario
+        cy.log('This is BeforeEach hook');
+    });
+
+    afterEach(function () {
+        cy.log('This is AfterEach hook');
+    });
+
+    it('should run a simple test #1', () => {
+        cy.log('TEST #1');
+    });
+
+    it('should run a simple test #2', () => {
+        cy.log('TEST #2');
+    });
+});
