@@ -155,10 +155,20 @@ describe.skip('Fixtures/Static Data', () => {
     })
 });
 
-describe('Keyboard Press Simulation', () => {
+describe.skip('Keyboard Press Simulation', () => {
     it('should press on Enter keyboard', () => {
         cy.visit('http://zero.webappsecurity.com/index.html');
         cy.get('#searchTerm').type('online banking {enter}', { delay: 100 });
         cy.get('h2').contains('Search Results:');
+    });
+});
+
+
+describe('working with Select box', () => {
+    it('should select the value from the dropdown', () => {
+        cy.visit('https://devexpress.github.io/testcafe/example/');
+        cy.wait(2000);
+        cy.get('#preferred-interface').select('JavaScript API');
+        cy.get('#preferred-interface').should('have.value', 'JavaScript API');
     });
 });
