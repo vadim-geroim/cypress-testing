@@ -201,3 +201,13 @@ describe.skip('Write data into JSON or TXT file', () => {
         cy.writeFile('txt-log.txt', 'This is an example of the plain text.');
     });
 });
+
+describe.skip('Read data from JSON or TXT files', () => {
+    it('should read the data from the JSON file', () => {
+        cy.readFile('json-log.json').its('name').should('eq', 'Peter');
+    });
+
+    it('should read the data from the TXT file', () => {
+        cy.readFile('txt-log.txt').should('eq', 'This is an example of the plain text.')
+    });
+});
