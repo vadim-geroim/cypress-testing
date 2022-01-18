@@ -1,4 +1,3 @@
-
 //Notes: keep under 10 tests in a describe block to simplify the debugging process.
 describe.skip('Load URL, Assertions', () => {
     it('should wait to load the page only during 10 seconds', () => {
@@ -281,5 +280,13 @@ describe.skip('Before, After, BeforeEach, AfterEach hooks', () => {
 
     it('should run a simple test #2', () => {
         cy.log('TEST #2');
+    });
+});
+
+describe.skip('JQuery with Cypress', () => {
+    it('should user JQuery to find the element', () => {
+        cy.visit('http://zero.webappsecurity.com/login.html');
+        const $loginBtn = Cypress.$('input[value="Sign in"]');
+        cy.wrap($loginBtn).click();
     });
 });
