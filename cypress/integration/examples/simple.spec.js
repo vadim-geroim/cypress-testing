@@ -134,9 +134,23 @@ describe.skip('Viewport/Devices emulation', () => {
     });
 });
 
-describe('Get and assert page title', () => {
+describe.skip('Get and assert page title', () => {
     it('should assert page title', () => {
         cy.visit('https://example.com');
         cy.title().should('include', 'Example Domain');
     });
+});
+
+describe('Fixtures/Static Data', () => {
+    it('should use static user data', () => {
+        cy.visit('http://zero.webappsecurity.com/login.html');
+        cy.fixture('user-data').then(user => {
+            const username = user.name;
+            const password = user.password;
+            cy.get('#user_login').clear().type(username, { delay: 100 });
+            cy.get('#user_password').clear().type(password);
+            cy.get('input[value="Sign in"').click();
+            cy.get('.alert-error').should('be.visible');
+        });
+    })
 });
