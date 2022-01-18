@@ -40,7 +40,7 @@ describe('Navbar links validation', () => {
     });
 });
 
-describe.only('Feedback Forms', () => {
+describe('Feedback Forms', () => {
     before(function () {
         cy.visit('http://zero.webappsecurity.com/index.html');
         cy.get('#feedback').click();
@@ -53,5 +53,34 @@ describe.only('Feedback Forms', () => {
         cy.get('#comment').clear().type('Comments for testing.');
         cy.get('input[value="Send Message"]').click();
         cy.contains('Thank you for your comments, Peter I');
+    });
+});
+
+describe.only('Login / logout flow', () => {
+    before(function () {
+        cy.visit('http://zero.webappsecurity.com/index.html');
+        cy.get('#signin_button').click();
+    });
+
+    it('should attempt to login with invalid data', () => {
+        cy.get('#user_login').clear().type('fake login');
+        cy.get('#user_password').clear().type('fake psw');
+        cy.get('input[value="Sign in"]').click();
+        cy.get('.alert-error').should('be.visible').and('contain', 'Login and/or password are wrong.');
+    });
+
+    it('should login with valid data', () => {
+        cy.fixture('user-data').then(user => {
+            cy.get('#user_login').clear().type(user.name);
+            cy.get('#user_password').clear().type(user.password);
+            cy.get('input[value="Sign in"]').click();
+            cy.contains('Account Summary');
+        });
+    });
+
+    it('should successfully logout', () => {
+        cy.get('.icon-user').click();
+        cy.get('#logout_link').click();
+        cy.url().should('contain', 'index.html');
     });
 });
