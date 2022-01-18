@@ -56,7 +56,7 @@ describe('Feedback Forms', () => {
     });
 });
 
-describe.only('Login / logout flow', () => {
+describe('Login / logout flow', () => {
     before(function () {
         cy.visit('http://zero.webappsecurity.com/index.html');
         cy.get('#signin_button').click();
@@ -82,5 +82,32 @@ describe.only('Login / logout flow', () => {
         cy.get('.icon-user').click();
         cy.get('#logout_link').click();
         cy.url().should('contain', 'index.html');
+    });
+});
+
+describe.only('Craete new payee', () => {
+    //User login
+    before(function () {
+        cy.visit('http://zero.webappsecurity.com/index.html');
+        cy.get('#signin_button').click();
+        cy.fixture('user-data').then(user => {
+            cy.get('#user_login').clear().type(user.name);
+            cy.get('#user_password').clear().type(user.password);
+            cy.get('input[value="Sign in"]').click();
+        });
+    });
+
+    it('should create a new payee', () => {
+        //Navigate to 'Add New Payee' tab
+        cy.get('#pay_bills_tab a').click();
+        cy.get('a[href="#ui-tabs-2"]').click();
+        //Fill in a form and submit
+        cy.get('#np_new_payee_name').clear().type('fake name');
+        cy.get('#np_new_payee_address').clear().type('fake address');
+        cy.get('#np_new_payee_account').clear().type('fake account');
+        cy.get('#np_new_payee_details').clear().type('details');
+        cy.get('#add_new_payee').click();
+        //Validation
+        cy.get('#alert_content').should('be.visible').and('contain', 'The new payee fake name was successfully created.');
     });
 });
