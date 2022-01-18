@@ -120,3 +120,16 @@ describe.skip('Time and date modification', () => {
     })
 });
 
+describe('Viewport/Devices emulation', () => {
+    it('should open the webpage on iphone', () => {
+        cy.visit('https://example.com');
+        cy.viewport('iphone-x');
+        cy.wait(3000);
+    });
+
+    it('should open the webpage with specific sizes', () => {
+        cy.visit('https://example.com');
+        cy.viewport(550, 750);
+        cy.wait(3000);
+    });
+});
