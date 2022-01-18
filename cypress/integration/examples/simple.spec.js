@@ -141,7 +141,7 @@ describe.skip('Get and assert page title', () => {
     });
 });
 
-describe('Fixtures/Static Data', () => {
+describe.skip('Fixtures/Static Data', () => {
     it('should use static user data', () => {
         cy.visit('http://zero.webappsecurity.com/login.html');
         cy.fixture('user-data').then(user => {
@@ -153,4 +153,12 @@ describe('Fixtures/Static Data', () => {
             cy.get('.alert-error').should('be.visible');
         });
     })
+});
+
+describe('Keyboard Press Simulation', () => {
+    it('should press on Enter keyboard', () => {
+        cy.visit('http://zero.webappsecurity.com/index.html');
+        cy.get('#searchTerm').type('online banking {enter}', { delay: 100 });
+        cy.get('h2').contains('Search Results:');
+    });
 });
