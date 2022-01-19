@@ -1,6 +1,7 @@
+import BasePage from "../BasePage";
 export default class LoginPage extends BasePage {
     static login(email, psw) {
-        cy.log(email, psw);
+        cy.login(email, psw);
     }
 
     static clickOnForgotPswLink() {
