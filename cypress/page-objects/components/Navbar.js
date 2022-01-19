@@ -10,4 +10,12 @@ export default class Navbar {
     static enterInSearch(keywords) {
         cy.get('#searchTerm').clear().type(`${keywords} {enter}`)
     }
+
+    static clickOnUserIcon() {
+        cy.contains('username').click();
+    }
+
+    static clickOnLogoutBtn() {
+        cy.get('#logout_link').click();
+    }
 }

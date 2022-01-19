@@ -18,4 +18,11 @@ describe('Login functionality suite', () => {
         LoginPage.login(login, psw);
         cy.contains('Cash Accounts');
     })
+
+    it.only('should logout and navigate to Home page', () => {
+        LoginPage.login(login, psw);
+        Navbar.clickOnUserIcon();
+        Navbar.clickOnLogoutBtn();
+        cy.url().should('contain', 'index.html');
+    });
 })
